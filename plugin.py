@@ -32,6 +32,13 @@ class Muzzle(callbacks.Plugin):
             irc = callbacks.SimpleProxy(irc, msg)
 
             def voice():
+                if msg.nick not in irc.state.channels[channel].users:
+                    self.log.warn('%s is no longer in %s, cannot voice'
+                                  % (msg.nick, channel))
+                    return
+
+                self.log.info('Removing muzzle from %s in %s'
+                              % (msg.nick, channel))
                 irc.queueMsg(ircmsgs.voice(channel, msg.nick))
 
             schedule.addEvent(voice, time() + delay)
