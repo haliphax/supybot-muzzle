@@ -10,10 +10,10 @@ import supybot.schedule as schedule
 
 class Muzzle(callbacks.Plugin):
     """
-    This plugin greets users with a defined message when they join the
+    This plugin adds +v user mode to people after a delay when they join the
     channel. In order to use this plugin, supybot.plugins.Muzzle.enable
-    must be True, and supybot.plugins.Muzzle.message must be set to the
-    message you wish to send to users when they join.
+    must be True. supybot.plugins.Muzzle.delay may be set to the number of
+    seconds to wait before granting +v (default 30).
     """
 
     def __init__(self, irc):
